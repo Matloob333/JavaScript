@@ -98,3 +98,9 @@ fetch("https://api.github.com/users/Matloob333/repos")
   .catch((error) => {
     console.error(" Error fetching data:", error);
   });
+
+let p = prom;
+let fetch = () => {
+  let b = p;
+  return b;
+};
