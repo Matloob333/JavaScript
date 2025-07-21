@@ -9,7 +9,7 @@ function square(num) {
 var squareof2 = square(2);
 var squareof4 = square(4);
 
-////undefined
+////undefined- declared but not define value
 let a;
 console.log(a);
 //defined
@@ -17,7 +17,7 @@ let b = 10;
 console.log(b);
 
 //not defined
-//
+// console.log(q)
 
 //scope chaining
 /*the  scope chaining in a chain of lexical environment 
