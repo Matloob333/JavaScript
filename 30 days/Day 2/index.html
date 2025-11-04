@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matloob Ahmad</title>
+  </head>
+  <body>
+    <h1>Matloob Ahmad</h1>
+
+    <h2>Visit my profiles</h2>
+    <a href="https://www.linkedin.com/in/mrahmad33/" target="_blank">LinkedIn</a
+    ><br />
+    <a href="https://github.com/Matloob333" target="_blank">GitHub</a>
+    <br />
+
+    <h3>All Repos</h3>
+    <ol id="repo-list"></ol>
+
+    <script>
+      async function fetchGithubRepos() {
+        try {
+          const response = await fetch(
+            "https://api.github.com/users/Matloob333/repos"
+          );
+          const repos = await response.json();
+
+          const repoList = document.getElementById("repo-list");
+          repoList.innerHTML = ""; // Clear any placeholder items
+
+          repos.forEach((repo) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+              <strong>${repo.name}</strong> (<a href="${
+              repo.html_url
+            }" target="_blank">View</a>)<br>
+              ${repo.description ? repo.description : "No description"}
+              <br>Language: ${repo.language ? repo.language : "Not specified"}
+            `;
+            repoList.appendChild(li);
+          });
+        } catch (error) {
+          const repoList = document.getElementById("repo-list");
+          repoList.innerHTML = "Error fetching repositories.";
+          console.error("Error fetching repositories:", error.message);
+        }
+      }
+
+      fetchGithubRepos();
+    </script>
+  </body>
+</html>
