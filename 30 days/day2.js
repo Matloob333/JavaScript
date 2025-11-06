@@ -18,3 +18,9 @@ var expect = function (val) {
     },
   };
 };
+
+// test cases
+var counterFrom5 = createCounter(5);
+expect(counterFrom5()).toBe(5);
+expect(counterFrom5()).toBe(6);
+expect(counterFrom5()).toBe(7);
