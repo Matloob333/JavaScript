@@ -55,3 +55,21 @@ console.log(counterObj.reset()); // 10
 console.log(counterObj.decrement()); // 9
 console.log(counterObj.reset()); // 10
 console.log(counterObj.increment()); // 11
+
+// day 4
+// implement map function
+const map = function (arr, fn) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    result.push(fn(arr[i], i));
+  }
+  return result;
+};
+
+map([1, 2, 3], function plusOne(n) {
+  return n + 1;
+}); // return [2, 3, 4]
+
+map([1, 2, 3], function timesTwo(n) {
+  return n * 2;
+}); // return [2, 4, 6]
