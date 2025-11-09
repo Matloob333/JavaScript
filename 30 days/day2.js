@@ -73,3 +73,21 @@ map([1, 2, 3], function plusOne(n) {
 map([1, 2, 3], function timesTwo(n) {
   return n * 2;
 }); // return [2, 4, 6]
+
+// implement filter function
+var filter = function (arr, fn) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (fn(arr[i], i)) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
+filter([1, 2, 3, 4, 5], function (n) {
+  return n % 2 === 1;
+}); // return [1, 3, 5]
+
+filter([2, 4, 6, 8], function (n) {
+  return n > 5;
+});
