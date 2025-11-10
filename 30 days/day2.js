@@ -91,3 +91,33 @@ filter([1, 2, 3, 4, 5], function (n) {
 filter([2, 4, 6, 8], function (n) {
   return n > 5;
 });
+
+// implement reduce function
+var reduce = function (nums, fn, init) {
+  let res = init;
+  for (let i = 0; i < nums.length; i++) {
+    res = fn(res, nums[i]);
+  }
+  return res;
+};
+reduce(
+  [1, 2, 3, 4],
+  function sum(acc, curr) {
+    return acc + curr;
+  },
+  0
+); // return 10
+reduce(
+  [1, 2, 3, 4],
+  function product(acc, curr) {
+    return acc * curr;
+  },
+  1
+); // return 24
+reduce(
+  [2, 3, 4, 5],
+  function max(acc, curr) {
+    return Math.max(acc, curr);
+  },
+  1
+); // return 5
