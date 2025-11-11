@@ -121,3 +121,10 @@ reduce(
   },
   1
 ); // return 5
+reduce(
+  [2, 3, 4, 5],
+  function min(acc, curr) {
+    return Math.min(acc, curr);
+  },
+  1
+); // return 2S
