@@ -127,4 +127,42 @@ reduce(
     return Math.min(acc, curr);
   },
   1
-); // return 2S
+); // return 2
+
+// implement function composition
+var compose = function (functions) {
+  return function (x) {
+    return functions.reduceRight((acc, fn) => fn(acc), x);
+  };
+};
+
+const add1 = function (x) {
+  return x + 1;
+};
+const mul2 = function (x) {
+  return x * 2;
+};
+const add3 = function (x) {
+  return x + 3;
+};
+const composedFunction = compose([add1, mul2, add3]);
+console.log(composedFunction(5)); // Output: 19
+// Explanation: add3(5) = 8, mul2(8) = 16, add1(16) = 17
+const composedFunction2 = compose([mul2, add1, add3]);
+console.log(composedFunction2(5)); // Output: 15
+// Explanation: add3(5) = 8, add1(8) = 9, mul2(9) = 18
+const composedFunction3 = compose([]);
+console.log(composedFunction3(5)); // Output: 5
+// Explanation: No functions to apply, so the input is returned as is
+// implement function piping
+var pipe = function (functions) {
+  return function (x) {
+    return functions.reduce((acc, fn) => fn(acc), x);
+  };
+};
+
+const pipedFunction = pipe([add1, mul2, add3]);
+console.log(pipedFunction(5)); // Output: 15
+// Explanation: add1(5) = 6, mul2(6) = 12, add3(12) = 15
+const pipedFunction2 = pipe([mul2, add1, add3]);
+console.log(pipedFunction2(5)); // Output: 14
