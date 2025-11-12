@@ -166,3 +166,19 @@ console.log(pipedFunction(5)); // Output: 15
 // Explanation: add1(5) = 6, mul2(6) = 12, add3(12) = 15
 const pipedFunction2 = pipe([mul2, add1, add3]);
 console.log(pipedFunction2(5)); // Output: 14
+
+// Explanation: mul2(5) = 10, add1(10) = 11, add3(11) = 14
+const pipedFunction3 = pipe([]);
+console.log(pipedFunction3(5)); // Output: 5
+
+// day 8
+// Explanation: No functions to apply, so the input is returned as is
+var argumentsLength = function (...args) {
+  console.log(args.length);
+  return args.length;
+};
+argumentsLength(1, 2, 3); // return 3
+argumentsLength(); // return 0
+argumentsLength(true, false); // return 2
+argumentsLength("hello", "world", "!"); // return 3
+argumentsLength(42); // return 1
