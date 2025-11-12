@@ -1,138 +1,77 @@
-// // functions
-// var x=1;
-// a();
-// b();
-// console.log(x);
+// function add(a, b) {
+//     return a + b; }
+// function subtract(a, b) {
 
-// function a(){
-//     var x=10;
-//     console.log(x);
-// }
+const { resourceLimits } = require("worker_threads");
 
-// function b(){
-//     var x=200;
-//     console.log(x);
-// }
-
-// // let & const & var diff
-
-// console.log(a);//'a' is go to the temporal dead zone
-// let a=10;
-
-// var b=100;
-
-// //Syntaxx error
-// let a=10;
-// let a=100; // throw syntaxerror Identifier "a" has already been declared
-
-// // declaration syntax
-// let a;
-// a=10;
-// console.log(a);
-// var c;
-// c=1000;
-// console.log(c);
-
-// const d=399;
-// console.log(d);
-
-// let a;
-// a=10;
-// a=200;
-// console.log(a);
-// var c;
-// c=1000;
-// c==2000
-// console.log(c);
-
-// const e=399;
-// console.log(e);
-
-// //closure
-// function x(){
-//     var a=7;
-//     function y(){
-//         console.log(a);
-//     } return y;
-// }
-// var z=x();
-// console.log(z);
-// z();
-
-// // making a increment counter using closure for hide data
-// function counter(){
-//     var count =0;
-//     return function incrementCounter(){
-//         count++;
-//         console.log(count);
-//     }
-// }
-// var counter1= counter();
-// counter1();
-// counter1();
-// counter1();
-// // this counter2 is a diffrent counter and its start counting from 0
-// var counter2= counter();
-// counter2();
-// counter2();
-// counter2();
-
-// // making a increment and decrement counter using closure and constructor methood
-
-// function Counter (){
-//     var count =0;
-//     this.incrementCounter=function(){
-//         count++;
-//         console.log(count);
-//     }
-//     this.decrementCounter=function(){
-//         count--;
-//         console.log(count);
-//     }
-// }
-// var counter1=new Counter();
-// counter1.incrementCounter();
-// counter1.incrementCounter();
-// counter1.incrementCounter();
-// counter1.decrementCounter();
-
-// type of function & functions
-//1 function statement and function declaration
-function a() {
-  console.log("function statement");
+//     return a - b; }
+function multiply(a, b) {
+  return a * b;
 }
-a();
+console.log("multiply:", multiply(5, 3));
 
-//2 function expression;
-var b = function () {
-  console.log("function expression");
+function divide(c, d) {
+  return c / d;
+}
+let result = divide(6, 3);
+
+console.log(result);
+
+const square = (x) => x * x;
+let res = square(5);
+console.log(res);
+
+const obj = {
+  name: "matloob",
+  age: 23,
 };
-b();
+console.log(obj);
+console.log(obj.name);
+console.log(obj.age);
+console.log("******************");
+console.log(Object.keys(obj));
+console.log(Object.values(obj));
+console.log(Object.entries(obj));
+console.log("***************");
+console.log(Object.assign(obj));
+console.log("***************");
 
-//3 anonymous funtion is that function when a function used as values
-// function(){
+// greet function
+function greet(name) {
+  return `Hello,${name}!`;
+}
 
-// };
+console.log(greet(obj.name));
 
-//4 named function expression
-var c = function named() {
-  console.log("named function expression");
+console.log("***************");
+
+const allow = (name, age) => {
+  return `${name},your age is ${age} , So you are allow to drive`;
 };
+console.log(allow(obj.name, obj.age));
 
-//5 First classs funcction is also known as first class citizens ,is a function that passed a funtion in a funtion and return function in a funtion
-var d=function(parameter1){
-    return function(){
-        console.log("First class function");
-    };
+console.log("***************");
+
+const obj1 = {
+  greet(name) {
+    return `hello, ${name}`;
+  },
 };
-d();
-console.log(d());
+console.log(obj1.greet(obj.name));
 
-//6 Arrow function                  
+// async function
+async function fetchData() {
+  let response = await fetch("https://github.com/Matloob333");
+  let data = await response.text(); // or use response.json() if API returns JSON
+  console.log(data);
+  return data;
+}
+fetchData();
 
-//7 difference between Parameters & Arguments
-//parameters are also calledd indentifier and labels are gets those values as parameter
-// arguments is the value which we passed in a function
-
-
-//
+async function fetchRepos() {
+  let response = await fetch("https://api.github.com/users/Matloob333/repos");
+  let data = await response.json();
+  console.log(data);
+  return data;
+}
+fetchRepos();
