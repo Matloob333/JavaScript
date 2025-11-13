@@ -111,5 +111,30 @@ const calculate = function (radius, logic) {
 };
 
 console.log(calculate(radius, area));
+
 console.log(calculate(radius, circumference));
 console.log(calculate(radius, diameter));
+console.log("***************");
+
+const users = [
+  { firstName: "akshay", lastName: "saini", age: 50 },
+  { firstName: "shahid", lastName: "Ahmad", age: 75 },
+  { firstName: "alon", lastName: "musk", age: 75 },
+];
+
+const output = users.reduce(function (acc, curr) {
+  if (acc[curr.age]) {
+    acc[curr.age] = ++acc[(acc, curr)];
+  } else {
+    acc[curr.age] = 1;
+  }
+  return acc;
+}, {});
+console.log(output);
+
+// filter
+let output2 = users.filter((x) => x.age > 30).map((x) => x.firstName);
+console.log(output2);
+
+let output3 = users.filter((z) => (z = "Ahmad")).map((z) => z.lastName);
+console.log(output3);

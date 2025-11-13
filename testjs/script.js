@@ -1,6 +1,10 @@
 //Callstack
 //the callstack is a data structure used by js in keep track the function calls,it work like stack of plates -the last plate added and the first plate is removed (LIFO)
 
+const { rejects } = require("assert");
+const { error } = require("console");
+const { resolve } = require("path");
+
 //ex
 function square(num) {
   var ans = num * num;
@@ -8,6 +12,10 @@ function square(num) {
 }
 var squareof2 = square(2);
 var squareof4 = square(4);
+
+const square1 = (x) => x * x;
+let res = square1(5);
+console.log("sqaure1 of 5:", res);
 
 ////undefined- declared but not define value
 let a;
@@ -17,7 +25,7 @@ let b = 10;
 console.log(b);
 
 //not defined
-// console.log(q)
+// console.log(q);
 
 //scope chaining
 /*the  scope chaining in a chain of lexical environment 
@@ -106,24 +114,24 @@ console.log("End");
  * ex
  */
 
-async function getData() {
-  let response = await fetch("https://api.github.com/users/Matloob333/repos");
-  let data = await response.json();
-  console.log(data);
-}
-getData();
+// async function getData() {
+//   let response = await fetch("https://api.github.com/users/Matloob333/repos");
+//   let data = await response.json();
+//   console.log(data);
+// }
+// getData();
 
 // with error handler async functiom
-async function getData() {
-  try {
-    let response = await fetch("https://api.github.com/users/Matloob333/repos");
-    let data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-}
-getData();
+// async function getData() {
+//   try {
+//     let response = await fetch("https://api.github.com/users/Matloob333/repos");
+//     let data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// }
+// getData();
 
 // Callback Funtion
 /**Callback funtion is that funtion that giving a
@@ -134,27 +142,56 @@ getData();
  *  understand,read, debug and maintain this is called callback hell
  * ex
  */
+// print 1 to 5 each every 1 seceond interval
+function count() {
+  setTimeout(() => {
+    for (let i = 1; i <= 5; i++) {
+      console.log("print 1 to 5 every 1 second interval:", i);
+    }
+  }, i * 1000);
+}
+count();
 
 function doTask1(callback) {
   setTimeout(() => {
-    console.log("Task 1 done");
+    console.log("task1 completed");
     callback();
-  }, 1000);
+  }, 2000);
 }
 
 function doTask2(callback) {
   setTimeout(() => {
-    console.log("Task 2 done");
+    console.log("task2 comoleted");
     callback();
-  }, 1000);
+  }, 2000);
 }
 
-// Callback hell:
 doTask1(() => {
   doTask2(() => {
-    console.log("All tasks completed");
+    console.log("all task completed");
   });
 });
+
+// function doTask1(callback) {
+//   setTimeout(() => {
+//     console.log("Task 1 done");
+//     callback();
+//   }, 1000);
+// }
+
+// function doTask2(callback) {
+//   setTimeout(() => {
+//     console.log("Task 2 done");
+//     callback();
+//   }, 1000);
+// }
+
+// // Callback hell:
+// doTask1(() => {
+//   doTask2(() => {
+//     console.log("All tasks completed");
+//   });
+// });
 
 // Promise - Clear way to handle ansyncronous programme
 /**a promise is an object that represent the eventual result
@@ -185,3 +222,46 @@ fetchUserData()
   .catch((err) => {
     console.log("Error", err);
   });
+
+// callback
+function wish(name, callback) {
+  console.log("Hello" + name);
+  callback();
+}
+
+function sayGoodBye() {
+  console.log("GoodBye!");
+}
+
+wish("Alice", sayGoodBye);
+
+// promise
+const promise = new Promise((resolve, reject) => {
+  let succcess = false;
+  if (succcess) {
+    resolve(`operation succeeded`);
+  } else {
+    reject(`operationn failed`);
+  }
+});
+
+promise
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((erro) => {
+    console.log(error);
+  });
+
+// async function
+function wait() {
+  return new Promise((resolve) => setTimeout(resolve, 5000));
+}
+
+async function asyncFunction() {
+  console.log(`start`);
+  await wait(5000);
+  console.log(`end after 5 second`);
+}
+
+asyncFunction();

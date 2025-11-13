@@ -182,3 +182,18 @@ argumentsLength(); // return 0
 argumentsLength(true, false); // return 2
 argumentsLength("hello", "world", "!"); // return 3
 argumentsLength(42); // return 1
+
+//day 9
+var once = function (fn) {
+  let called = false;
+  let res;
+
+  return function (...args) {
+    if (!called) {
+      called = true;
+      res = fn(...args);
+      return res;
+    }
+    return undefined;
+  };
+};
