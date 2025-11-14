@@ -197,3 +197,21 @@ var once = function (fn) {
     return undefined;
   };
 };
+
+//day 10
+function memoize(fn) {
+  const cache = {};
+  let callCount = 0;
+
+  function memoized(...args) {
+    const key = JSON.stringify(args);
+    if (!(key in cache)) {
+      cache[key] = fn(...args);
+      callCount++;
+    }
+    return cache[key];
+  }
+
+  memoized.getCallCount = () => callCount;
+  return memoized;
+}
