@@ -215,3 +215,4 @@ function memoize(fn) {
   memoized.getCallCount = () => callCount;
   return memoized;
 }
+let cache = caches;
