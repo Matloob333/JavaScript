@@ -215,4 +215,20 @@ function memoize(fn) {
   memoized.getCallCount = () => callCount;
   return memoized;
 }
-let cache = caches;
+
+// day 11
+/*Promises in JavaScript are used to handle asynchronous operations.
+A Promise is an object that represents the eventual completion (or failure)
+of an asynchronous operation and its resulting value.
+var addTwoPromises = async function (promise1, promise2) {
+  return Promise.all([promise1, promise2]).then(([a, b]) => a + b);
+};
+*/  
+var addTwoPromises = async function (promise1, promise2) {
+  return Promise.all([promise1, promise2]).then(([a, b]) => a + b);
+};  
+// day 12
+/* The "this" keyword in JavaScript refers to the object that is currently executing the code.
+Its value can change depending on the context in which it is used. Here are some common scenarios:
+
+1. Global Context: In the global execution context (outside of any function), "this" refers to the global object (window in browsers, global in Node.js). 
