@@ -89,9 +89,9 @@ let obj = {
   },
   objInsideVal: this.a,
 };
-obj2 = {
-  arrowfun: () => {
-    console.log("arrow obj2", this);
+let obj2 = {
+  arrowfun: (args) => {
+    console.log("arrow obj2", this, args);
   },
 };
 
@@ -100,4 +100,4 @@ obj.a = 200;
 console.log("objInsideVal", obj.objInsideVal);
 console.log("execution of sum", obj.sum());
 console.log("arroe func here", obj.minus(500));
-console.log("obj2arrowfunc:", obj2.arrowfun());
+console.log("obj2arrowfunc:", obj2.arrowfun().call({ a: "b" }));
