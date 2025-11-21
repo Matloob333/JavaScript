@@ -223,12 +223,61 @@ of an asynchronous operation and its resulting value.
 var addTwoPromises = async function (promise1, promise2) {
   return Promise.all([promise1, promise2]).then(([a, b]) => a + b);
 };
-*/  
+*/
 var addTwoPromises = async function (promise1, promise2) {
   return Promise.all([promise1, promise2]).then(([a, b]) => a + b);
-};  
+};
 // day 12
-/* The "this" keyword in JavaScript refers to the object that is currently executing the code.
-Its value can change depending on the context in which it is used. Here are some common scenarios:
+/**
+ * @param {number} millis
+ * @return {Promise<void>}
+ */
+async function sleep(millis) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, millis);
+  });
+}
 
-1. Global Context: In the global execution context (outside of any function), "this" refers to the global object (window in browsers, global in Node.js). 
+// Example usage
+(async () => {
+  const t = Date.now();
+  await sleep(100);
+  console.log(Date.now() - t); // ~100
+})();
+
+var cancellable = function (fn, args, t) {
+  const timerId = setTimeout(() => {
+    fn(...args);
+  }, t);
+  return function cancelFn() {
+    clearTimeout(timerId);
+  };
+};
+// Example usage:
+const logMessage = (message) => {
+  console.log(message);
+};
+const cancelLog = cancellable(logMessage, ["Hello, World!"], 5000);
+// To cancel the scheduled function call before it executes
+// cancelLog();
+// day 13
+// implement bind function
+Function.prototype.myBind = function (thisArg, ...args) {
+  const fn = this;
+  return function (...innerArgs) {
+    return fn.apply(thisArg, [...args, ...innerArgs]);
+  };
+};
+// Example usage:
+function greet(greeting, punctuation) {
+  return `${greeting}, ${this.name}${punctuation}`;
+}
+const person = { name: "Alice" };
+const greetAlice = greet.myBind(person, "Hello");
+console.log(greetAlice("!")); // Output: "Hello, Alice!"
+// day 14
+// implement call function
+Function.prototype.myCall = function (thisArg, ...args) {
+  const fn = this;
+  return fn.apply(thisArg, args);
+};

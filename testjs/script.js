@@ -265,3 +265,20 @@ async function asyncFunction() {
 }
 
 asyncFunction();
+
+//promise handle and syntax
+let promise1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let operationSuccessful = false;
+    if (operationSuccessful) {
+      resolve("success Value");
+    } else {
+      reject("error reason");
+    }
+  }, 2000);
+});
+
+promise1
+  .then((result) => console.log(result))
+
+  .catch((result) => console.log(result));
