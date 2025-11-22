@@ -281,3 +281,27 @@ Function.prototype.myCall = function (thisArg, ...args) {
   const fn = this;
   return fn.apply(thisArg, args);
 };
+
+var cancellable = function (fn, args, t) {
+  fn(...args); // initial call
+  const intervalId = setInterval(() => fn(...args), t);
+
+  const cancelFn = () => {
+    clearInterval(intervalId);
+  };
+
+  return cancelFn;
+};
+// Example usage:
+const logMessageInterval = (message) => {
+  console.log(message);
+};
+const cancelLogInterval = cancellable(
+  logMessageInterval,
+  ["Hello every 2 seconds!"],
+  2000
+);
+// To cancel the repeated function calls after some time
+setTimeout(() => {
+  cancelLogInterval();
+}, 10000);
