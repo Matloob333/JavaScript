@@ -336,3 +336,21 @@ TimeLimitedCache.prototype.get = function (key) {
 TimeLimitedCache.prototype.count = function () {
   return this.cache.size;
 };
+
+// day 17
+var debounce = function (fn, t) {
+  let timerId;
+
+  return function (...args) {
+    clearTimeout(timerId); // Cancel previous scheduled call
+    timerId = setTimeout(() => fn(...args), t); // Schedule new call
+  };
+};
+
+// Example usage:
+const logDebounce = (message) => {
+  console.log(message);
+};
+const debouncedLog = debounce(logDebounce, 2000);
+debouncedLog("Hello, World!"); // Will log after 2 seconds if not called again within that time
+debouncedLog("Hello again!"); // Resets the timer, will log this message after 2 seconds
