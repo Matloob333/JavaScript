@@ -354,3 +354,45 @@ const logDebounce = (message) => {
 const debouncedLog = debounce(logDebounce, 2000);
 debouncedLog("Hello, World!"); // Will log after 2 seconds if not called again within that time
 debouncedLog("Hello again!"); // Resets the timer, will log this message after 2 seconds
+
+// day 18var throttle = function (fn, t) {
+var promiseAll = function (functions) {
+  return new Promise((resolve, reject) => {
+    const n = functions.length;
+    const results = new Array(n);
+    let resolvedCount = 0;
+
+    if (n === 0) {
+      resolve([]);
+      return;
+    }
+
+    functions.forEach((fn, index) => {
+      fn()
+        .then((value) => {
+          results[index] = value;
+          resolvedCount++;
+          if (resolvedCount === n) resolve(results);
+        })
+        .catch((err) => reject(err));
+    });
+  });
+};
+let lastCall = 0;
+
+return function (...args) {
+  const now = Date.now();
+  if (now - lastCall >= t) {
+    lastCall = now;
+    fn(...args);
+  }
+};
+
+// Example usage:
+const logThrottle = (message) => {
+  console.log(message);
+};
+const throttledLog = throttle(logThrottle, 2000);
+throttledLog("Hello, World!"); // Will log immediately
+
+throttledLog("Hello again!"); // Will be ignored if called within 2 seconds of the previous call
