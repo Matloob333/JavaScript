@@ -396,3 +396,21 @@ const throttledLog = throttle(logThrottle, 2000);
 throttledLog("Hello, World!"); // Will log immediately
 
 throttledLog("Hello again!"); // Will be ignored if called within 2 seconds of the previous call
+
+//day19
+var isEmpty = function (obj) {
+  if (Array.isArray(obj)) {
+    return obj.length === 0;
+  }
+  return Object.keys(obj).length === 0;
+};
+// Example usage:
+console.log(isEmpty({})); // true
+console.log(isEmpty({ a: 1 }));
+
+// false
+console.log(isEmpty([])); // true
+console.log(isEmpty([1, 2, 3])); // false
+// false
+
+// day 20
