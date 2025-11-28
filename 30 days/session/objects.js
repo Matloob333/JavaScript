@@ -101,3 +101,51 @@ console.log("objInsideVal", obj.objInsideVal);
 console.log("execution of sum", obj.sum());
 console.log("arroe func here", obj.minus(500));
 console.log("obj2arrowfunc:", obj2.arrowfun().call({ a: "b" }));
+
+//day 20: chunk an array
+var chunk = function (arr, size) {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+};
+
+console.log(chunk([1, 2, 3, 4, 5, 6, 7], 3));
+//day 21: this keyword
+// // this keyword
+// ("use strict");
+// console.log(this);
+// // this keyword in functional scope
+// function x() {
+//   console.log(this);
+// }
+// x();
+// this keyword in object
+// const obj = {
+//   a: 10,
+//   x: function () {
+//     console.log(this);
+//   },
+// };
+// obj.x();
+// this keyword in call method
+// const user = {
+//   name: "Matloob",
+//   printName: function () {
+//     console.log(this.name);
+//   },
+// };
+// user.printName();
+
+// this keyword in arrow function
+
+// this keyword in arrow function return window objecct because
+//this code in global scope
+// const obj = {
+//   a: 10,
+//   x: () => {
+//     console.log(this);
+//   },
+// };
+// obj.x();
