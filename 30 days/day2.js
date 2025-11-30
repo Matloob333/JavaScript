@@ -424,3 +424,20 @@ console.log(arr.last()); // Output: 3
 const emptyArr = [];
 console.log(emptyArr.last()); // Output: -1
 // day 22
+Array.prototype.groupBy = function (fn) {
+  const result = {};
+  for (const item of this) {
+    const key = fn(item);
+    if (!result[key]) {
+      result[key] = [];
+    }
+    result[key].push(item);
+  }
+  return result;
+};
+
+// Example usage:
+const arr1 = [1.3, 2.1, 2.4];
+const grouped = arr.groupBy(Math.floor);
+console.log(grouped); // Output: { '1': [ 1.3 ], '2': [ 2.1, 2.4 ] }
+// day 23
