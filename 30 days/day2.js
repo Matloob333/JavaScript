@@ -413,4 +413,14 @@ console.log(isEmpty([])); // true
 console.log(isEmpty([1, 2, 3])); // false
 // false
 
-// day 20
+// day 21
+Array.prototype.last = function () {
+  if (this.length === 0) return -1;
+  return this[this.length - 1];
+};
+// Example usage:
+const arr = [1, 2, 3];
+console.log(arr.last()); // Output: 3
+const emptyArr = [];
+console.log(emptyArr.last()); // Output: -1
+// day 22
