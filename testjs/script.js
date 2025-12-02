@@ -282,3 +282,12 @@ promise1
   .then((result) => console.log(result))
 
   .catch((result) => console.log(result));
+
+// day 23
+var sortBy = function (arr, fn) {
+  return arr.sort((a, b) => fn(a) - fn(b));
+};
+console.log(sortBy([1, 2, 3, 4, 5], (n) => -n));
+// Output: [5, 4, 3, 2, 1]
+console.log(sortBy([{ age: 20 }, { age: 30 }, { age: 10 }], (obj) => obj.age));
+// Output: [{age: 10}, {age: 20}, {age: 30}]
