@@ -291,3 +291,41 @@ console.log(sortBy([1, 2, 3, 4, 5], (n) => -n));
 // Output: [5, 4, 3, 2, 1]
 console.log(sortBy([{ age: 20 }, { age: 30 }, { age: 10 }], (obj) => obj.age));
 // Output: [{age: 10}, {age: 20}, {age: 30}]
+
+// day 24
+var join = function (arr1, arr2) {
+  const map = new Map();
+
+  for (const obj of arr1) {
+    map.set(obj.id, { ...obj });
+  }
+
+  for (const obj of arr2) {
+    map.set(obj.id, { ...(map.get(obj.id) || {}), ...obj });
+  }
+
+  return Array.from(map.values()).sort((a, b) => a.id - b.id);
+};
+console.log(
+  join(
+    [
+      { id: 1, name: "Alice" },
+      { id: 2, name: "Bob" },
+    ],
+    [
+      { id: 1, age: 25 },
+      { id: 2, age: 30 },
+    ]
+  )
+);
+// Output: [{id: 1, name: "Alice", age: 25}, {id: 2, name: "Bob", age: 30}]
+console.log(
+  join(
+    [{ id: 3, name: "Charlie" }],
+    [
+      { id: 3, age: 35 },
+      { id: 4, age: 40 },
+    ]
+  )
+);
+// Output: [{id: 3, name: "Charlie", age: 35}, {id: 4, age: 40}]
